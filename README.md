@@ -17,52 +17,41 @@ A multiplayer territory conquest game implemented in Rust using the GGEZ game fr
 - Movement: Arrow keys or WASD
 - Ready/Unready (in lobby): Space bar
 
-## Features
-
-- Real-time multiplayer (up to 4 players)
-- Client-server architecture using TCP and UDP
-- Player color assignments
-- Territory claiming and stealing mechanics
-- Lobby system with ready states
-- Game countdown timer
-- Sound effects for various game events
-- Score tracking
-- Interpolated player movement
-- Collision detection
-- Territory flood-fill algorithm
-
-## Technical Implementation
-
-### Network Architecture
-
-The game uses a hybrid networking approach:
-- TCP: Reliable communication for game state, player updates, and critical events
-- UDP: Fast communication for player positions and immediate updates
-
-### Server Components
-
-- Player management and state tracking
-- Game loop and timing
-- Territory validation
-- Collision detection
-- Broadcast messaging system
-
-### Client Components
-
-- Game state management
-- Input handling
-- Rendering system
-- Sound system
-- Network message processing
-
-## Setup and Running
-
-### Prerequisites
+# How to Run the Game
+## Prerequisites
+- Rust installed on your system
+- ggez graphics library dependencies (for audio / graphics)
+- Local network connection
+- Ensure the project is ran on your local machine and not in remote development
+## Setup & Running
+1. ### **Build the Project**
+Use Cargo, Rust's build tool, to build the game:
+```bash
+cargo build --release
+```
+2. ### **Start the Server**
+Launch the server to handle player connections and manage the game state:
 
 ```bash
-# Required Rust version
-rustc 1.75.0 or higher
+cargo run --bin server
+```
 
-# Required external dependencies
-GGEZ game framework
-tokio async runtime
+---
+
+3. ### **Start the Client**
+Run the client on each player's machine to connect to the server and join the game:
+
+```bash
+cargo run --bin client
+```
+
+- When prompted, enter the server's IP address (e.g., `192.168.x.x`).
+---
+4. ### **Start Subsequent Clients**
+Repeat Step 3 for each additional player who wants to join the game:
+
+```bash
+cargo run --bin client
+```
+
+- Each client should enter the same server IP address.
